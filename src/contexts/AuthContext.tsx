@@ -195,7 +195,7 @@ export const AuthProvider: FunctionComponent<Props> = ({children, onLoad}) => {
         // if token is not valid, user will get logged out
 
         if(!cookiesCacheRef.current) {
-            return 404;
+            return 400;
         }
 
         try {
@@ -204,7 +204,7 @@ export const AuthProvider: FunctionComponent<Props> = ({children, onLoad}) => {
                 token: cookiesCacheRef.current.token
             });
             if (response.status === 200) {
-                const user = User.fromServer(response.data.data);
+                const user = User.fromServer(response.data.user);
 
                 if (!user) {
                     await setUser(null);
@@ -259,13 +259,10 @@ export const AuthProvider: FunctionComponent<Props> = ({children, onLoad}) => {
     //> first run, fetch data from memory
     useEffect(() => {
         getFromCookies().then((cookies) => {
-            console.log("Got from cookies")
-            console.log(cookies);
             if(cookies == null) {
                 onLoad();
             } else {
                 fetchUser().then((u) => {
-                    console.log(u)
                     onLoad();
                 })
             }

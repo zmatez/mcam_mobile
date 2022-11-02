@@ -10,7 +10,7 @@ const defTheme = {
         primaryForeground: "white",
         primarySecondary: "#ced4db",
 
-        cameraBackground: "#292c3c",
+        cameraBackground: "#272b35",
         cameraControls: "#252731",
 
         heading: "black",
