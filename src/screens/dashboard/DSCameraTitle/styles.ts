@@ -3,6 +3,7 @@ import DefTheme from "../../../styles/DefTheme";
 
 const styles = StyleSheet.create({
     box: {
+        marginVertical: 6,
         backgroundColor: DefTheme.colors.secondary6,
         borderRadius: 15,
         padding: 8,

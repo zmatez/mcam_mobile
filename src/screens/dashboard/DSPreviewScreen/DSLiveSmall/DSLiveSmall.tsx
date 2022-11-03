@@ -9,7 +9,7 @@ import DefTheme from "../../../../styles/DefTheme";
 interface LiveProps {
 }
 
-const controlsIconsSize = 20;
+const controlsIconsSize = 24;
 const DSLiveSmall: FunctionComponent = () => {
     const {selectedCamera} = useDashboardFunc();
 

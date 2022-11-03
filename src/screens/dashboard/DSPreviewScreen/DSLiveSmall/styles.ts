@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     boxInner: {
         backgroundColor: DefTheme.colors.cameraBackground,
         borderRadius: 15,
-        alignItems: "center",
         overflow: "hidden"
     },
     stream: {
@@ -22,7 +21,8 @@ const styles = StyleSheet.create({
     },
     controls: {
         flexDirection: "row",
-        padding: 4,
+        paddingVertical: 4,
+        paddingHorizontal: 18,
         justifyContent: "flex-start",
         alignItems: "center"
     }

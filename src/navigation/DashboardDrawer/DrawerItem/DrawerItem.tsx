@@ -15,7 +15,7 @@ type Props = DataPaneProps;
 
 const DrawerItem: FunctionComponent<Props> = ({icon, text, selected, onPress}) => {
     return (
-        <TouchableNativeFeedback onPress={() => onPress}>
+        <TouchableNativeFeedback onPress={() => {onPress()}}>
             <View style={styles.view}>
                 {React.createElement(icon,{width: 18, height: 18, fill: defTheme.colors.primary1})}
                 <Text style={[defStyles.text, styles.text]} numberOfLines={1}>{text}</Text>

@@ -17,7 +17,7 @@ import CameraPreview from "../../components/camera/CameraPreview/CameraPreview";
 
 
 const DashAccDrawer: FunctionComponent<DrawerContentComponentProps> = (props) => {
-    const {cookiesCache} = useAuth();
+    const {cookiesCache, logout} = useAuth();
     const {isConnected} = useDashboard();
     const {cameras, refreshCameraList} = useDashboardFunc();
     if (!cookiesCache) {
@@ -61,7 +61,9 @@ const DashAccDrawer: FunctionComponent<DrawerContentComponentProps> = (props) =>
             </View>
             <View style={styles.navigationWrapper}>
                 <DrawerItem icon={SettingsIcon} text={"Ustawienia"} selected={props.navigation.getState().routeNames.includes("Konto")} onPress={() => {props.navigation.navigate("Konto")}}/>
-                <DrawerItem icon={LogoutIcon} text={"Wyloguj"} selected={props.navigation.getState().routeNames.includes("Konto")} onPress={() => {props.navigation.navigate("Konto")}}/>
+                <DrawerItem icon={LogoutIcon} text={"Wyloguj"} selected={props.navigation.getState().routeNames.includes("Konto")} onPress={() => {
+                    logout(false);
+                }}/>
             </View>
         </View>
     );
