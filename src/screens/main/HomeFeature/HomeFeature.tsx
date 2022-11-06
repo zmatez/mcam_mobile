@@ -16,7 +16,7 @@ const HomeFeature: FunctionComponent<Props> = ({icon, text}) => {
     return (
         <View style={styles.view}>
             {React.createElement(icon,{width: 20, height: 20, fill: defTheme.colors.primary1})}
-            <Text style={[defStyles.text, styles.text]} numberOfLines={1}>{text}</Text>
+            <Text style={[defStyles.title, styles.title]} numberOfLines={1}>{text}</Text>
         </View>
     );
 };
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         paddingVertical: 5,
     },
-    text: {
+    title: {
         marginLeft: 6,
         fontFamily: "URWGeometric-600"
     }

@@ -22,7 +22,7 @@ const DSCameraRequired: FunctionComponent<CameraReqProps> = ({children, required
     return selectedCamera && (selectedCamera.online || !requiredOnline) ? (<>{children}</>) : (
         <View style={styles.box}>
             {selectedCamera == null ? <SelectIcon width={iconSize} height={iconSize} fill={DefTheme.colors.secondary1}/> : <OfflineIcon width={iconSize} height={iconSize} fill={DefTheme.colors.secondary1}/>}
-            <Text style={styles.text}>{selectedCamera == null ? "Nie wybrano kamery" : "Kamera jest offline"}</Text>
+            <Text style={styles.title}>{selectedCamera == null ? "Nie wybrano kamery" : "Kamera jest offline"}</Text>
             {selectedCamera == null ? (
                 <MButton text={"Wybierz kamerę"} onClick={() => {
                     navigation.dispatch(DrawerActions.openDrawer());

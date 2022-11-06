@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     icon: {
 
     },
-    text: {
+    title: {
         fontSize: 18,
         color: DefTheme.colors.secondary0,
         fontFamily: "URWGeometric-800",

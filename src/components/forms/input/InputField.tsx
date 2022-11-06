@@ -71,8 +71,9 @@ const InputField: FunctionComponent<Props> = ({title, name, icon, index, type}) 
         }}>
             <View style={[styles.background, hasFocus ? styles.backgroundActive : null]}>
                 <View style={styles.backgroundInner}>
-                    <Text style={[defStyles.text, styles.title]}>{title}</Text>
-                    <TextInput secureTextEntry={password ? !passwordVisible : false} style={styles.input} selectionColor={defTheme.colors.primary1} ref={inputRef}
+                    <Text style={[defStyles.title, styles.title]}>{title}</Text>
+                    <TextInput secureTextEntry={password ? !passwordVisible : false} style={styles.input}
+                               selectionColor={defTheme.colors.primary1} ref={inputRef}
                                onFocus={() => {
                                    setHasFocus(true)
                                }} onBlur={() => {
@@ -108,7 +109,7 @@ const InputField: FunctionComponent<Props> = ({title, name, icon, index, type}) 
             {error == null ? null : (
                 <View style={styles.errorView}>
                     <ErrorIcon width={18} height={18} fill={defTheme.colors.error2}></ErrorIcon>
-                    <Text style={[defStyles.text,styles.errorText]}>{error}</Text>
+                    <Text style={[defStyles.title, styles.errorText]}>{error}</Text>
                 </View>
             )}
 

@@ -1,7 +1,7 @@
 import {StyleSheet} from "react-native";
 
 const defStyles = StyleSheet.create({
-    text: {
+    title: {
         fontFamily: "URWGeometric-500"
     },
     button: {

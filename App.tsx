@@ -3,6 +3,16 @@ import AppNavigation from "./src/navigation/AppNavigation";
 import {AuthProvider} from "./src/contexts/AuthContext";
 import {useState} from "react";
 import {NavigationContainer} from "@react-navigation/native";
+import * as dayjs from 'dayjs'
+import 'dayjs/locale/pl'
+import dayJsRelativeTime from 'dayjs/plugin/relativeTime';
+import dayJsWeekday from 'dayjs/plugin/weekday';
+import dayJsCalendar from 'dayjs/plugin/calendar';
+
+dayjs.locale('pl');
+dayjs.extend(dayJsRelativeTime);
+dayjs.extend(dayJsWeekday);
+dayjs.extend(dayJsCalendar);
 
 export default function App() {
     const [loading, setLoading] = useState(true);

@@ -31,6 +31,7 @@ interface DashboardFuncContextProps {
     openUpdateModal: () => void;
     streaming: boolean | null;
     setStreaming: (val: boolean | null) => void;
+    streamingRef: React.MutableRefObject<boolean | null>;
     tempReadings: TempReading[] | null;
 }
 
@@ -50,7 +51,8 @@ const DashboardFuncProvider: FunctionComponent<Props> = ({children}) => {
     const [currentCameraHistory, setCurrentCameraHistory] = useState<CameraHistory | null>(null);
     const [currentCameraSettings, setCurrentCameraSettings] = useState<CameraSettings | null>(null);
     const [refreshingCameraSettings, setRefreshingCameraSettings] = useState(false);
-    const [streaming, setStreaming] = useState<boolean | null>(null);
+    const [streaming, _setStreaming] = useState<boolean | null>(null);
+    const streamingRef = useRef<boolean | null>(null);
     const [tempReadings, setTempReadings] = useState<TempReading[] | null>(null);
 
     // update modal
@@ -270,6 +272,11 @@ const DashboardFuncProvider: FunctionComponent<Props> = ({children}) => {
         setUpdateModal(true);
     }
 
+    const setStreaming = (streaming: boolean | null) => {
+        streamingRef.current = streaming;
+        _setStreaming(streaming)
+    }
+
     const cameraInfo = currentCameraInfo;
     const cameraHistory = currentCameraHistory;
     const cameraSettings = currentCameraSettings;
@@ -288,7 +295,8 @@ const DashboardFuncProvider: FunctionComponent<Props> = ({children}) => {
         refreshingCameraSettings,
         streaming,
         setStreaming,
-        tempReadings
+        tempReadings,
+        streamingRef
     }
 
 

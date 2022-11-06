@@ -77,14 +77,14 @@ const LoginScreen: FunctionComponent<LoginProps> = ({navigation}) => {
                                     preserveAspectRatio="xMinYMax slice"/>
             <SafeAreaView style={styles.backgroundPortraitInner}>
                 <View style={styles.titleView}>
-                    <Text style={[defStyles.text, styles.titleSecondary]}>
+                    <Text style={[defStyles.title, styles.titleSecondary]}>
                         Logowanie
                     </Text>
-                    <Text style={[defStyles.text, styles.titlePrimary]}>
+                    <Text style={[defStyles.title, styles.titlePrimary]}>
                         Zaloguj się<Text style={{color: defTheme.colors.primary1}}>.</Text>
                     </Text>
                     <TouchableOpacity>
-                        <Text style={[defStyles.text, styles.titleChangeMethod]}>
+                        <Text style={[defStyles.title, styles.titleChangeMethod]}>
                             Nie masz konta? <Text style={{color: defTheme.colors.primary1}}>Zarejestruj się</Text>
                         </Text>
                     </TouchableOpacity>
@@ -97,7 +97,7 @@ const LoginScreen: FunctionComponent<LoginProps> = ({navigation}) => {
                                     index={1}/>
                     </View>
                 </FormContext>
-                <Text style={[defStyles.text,styles.errorText]}>
+                <Text style={[defStyles.title, styles.errorText]}>
                     {errorMessage}
                 </Text>
                 <View style={[styles.progressHolder]}>

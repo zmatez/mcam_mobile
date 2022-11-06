@@ -60,8 +60,12 @@ const DashAccDrawer: FunctionComponent<DrawerContentComponentProps> = (props) =>
                 ))}
             </View>
             <View style={styles.navigationWrapper}>
-                <DrawerItem icon={SettingsIcon} text={"Ustawienia"} selected={props.navigation.getState().routeNames.includes("Konto")} onPress={() => {props.navigation.navigate("Konto")}}/>
-                <DrawerItem icon={LogoutIcon} text={"Wyloguj"} selected={props.navigation.getState().routeNames.includes("Konto")} onPress={() => {
+                <DrawerItem icon={SettingsIcon} text={"Ustawienia"}
+                            selected={props.navigation.getState().routeNames.includes("Konto")} onPress={() => {
+                    props.navigation.navigate("Account")
+                }}/>
+                <DrawerItem icon={LogoutIcon} text={"Wyloguj"}
+                            selected={props.navigation.getState().routeNames.includes("Konto")} onPress={() => {
                     logout(false);
                 }}/>
             </View>

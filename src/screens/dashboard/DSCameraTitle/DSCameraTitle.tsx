@@ -18,7 +18,9 @@ const DSCameraTitle: FunctionComponent<CameraTitleProps> = (props) => {
     return (
         <View style={styles.box}>
             <CameraIcon width={24} height={24} fill={DefTheme.colors.secondary0}/>
-            <Text style={styles.text}>{selectedCamera.name}</Text>
+            <Text style={styles.title}>{selectedCamera.name}</Text>
+            <Text
+                style={[styles.status, {color: selectedCamera.online ? DefTheme.colors.primary1 : DefTheme.colors.secondary1}]}>{selectedCamera.online ? "online" : "offline"}</Text>
         </View>
     );
 };

@@ -16,6 +16,8 @@ export interface DashboardContextProps {
     send: (channel: number, data: any) => boolean;
     once: (channel: number, timeout: number, accept?: (data: any) => boolean) => Promise<any>;
     isConnected: boolean;
+    isDead: boolean;
+    reconnect: () => void;
 }
 
 interface SubscriptionData {
@@ -32,14 +34,21 @@ export function useDashboard() {
 const DashboardProvider: FunctionComponent<Props> = ({children}) => {
     const {getFromCookies, setUser, logout} = useAuth();
     const [connected, setConnected] = useState(false);
+    const [dead, setDead] = useState(false);
+    const [refresh, setRefresh] = useState(false);
     const connectedRef = useRef(false);
+    const deadRef = useRef(false);
     const [subscriptions, setSubscriptions] = useState<{ [channel: number]: ((data: any) => void)[] }>({});
     const sendCallbackRef = useRef<((channel: number, data: any) => boolean) | null>(null);
 
     useEffect(() => {
+        console.log("Loading DashboardProvider");
         let channel: string | null = null;
         let authorized = false;
         let close = false;
+
+        setDead(false);
+        deadRef.current = false;
 
         const url = ENV_API_SOCKET;
         if (!url) {
@@ -47,10 +56,25 @@ const DashboardProvider: FunctionComponent<Props> = ({children}) => {
         }
 
         let socket: WebSocket | null = null;
+        let lastMessageTime: Date | null = null;
+
+        // keep alive
+        const keepAlive = setInterval(() => {
+            if (!deadRef.current) {
+                if (lastMessageTime && lastMessageTime.getTime() + 20000 < new Date().getTime()) {
+                    deadRef.current = true;
+                    setDead(true);
+                } else {
+                    send(Messages.CONNECTION_CHECK, null);
+                }
+            }
+        }, 10000)
 
         const connect = async () => {
+            console.log("Connecting...")
             const auth = await getFromCookies();
             if (!auth) {
+                logout(true);
                 return;
             }
 
@@ -69,6 +93,12 @@ const DashboardProvider: FunctionComponent<Props> = ({children}) => {
             }
 
             const receive = (channel: number, data: any) => {
+                if (deadRef.current) {
+                    // IT'S ALIVE!!!
+                    deadRef.current = false;
+                    setDead(false);
+                }
+                lastMessageTime = new Date();
                 if (!authorized) {
                     if (channel === Messages.AUTHENTICATION_SUCCESSFUL) {
                         const user = User.fromServer(JSON.parse(data));
@@ -140,12 +170,19 @@ const DashboardProvider: FunctionComponent<Props> = ({children}) => {
         connect();
 
         return () => {
+            clearInterval(keepAlive);
             close = true;
             if (socket) {
                 socket.close();
             }
         }
-    }, []);
+    }, [refresh]);
+
+    const reconnect = () => {
+        connectedRef.current = false;
+        setConnected(false);
+        setRefresh(!refresh);
+    }
 
     const subscribe = (channel: number, callback: (data: any) => void): SubscriptionData => {
         const subscriptionsCapture = subscriptions;
@@ -203,13 +240,16 @@ const DashboardProvider: FunctionComponent<Props> = ({children}) => {
     }
 
     const isConnected = connected;
+    const isDead = dead;
 
     const contextProps: DashboardContextProps = {
         subscribe,
         unsubscribe,
         send,
         once,
-        isConnected
+        isConnected,
+        isDead,
+        reconnect
     }
 
     return (

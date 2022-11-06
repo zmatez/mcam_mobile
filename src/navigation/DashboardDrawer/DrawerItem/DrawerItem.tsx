@@ -18,7 +18,7 @@ const DrawerItem: FunctionComponent<Props> = ({icon, text, selected, onPress}) =
         <TouchableNativeFeedback onPress={() => {onPress()}}>
             <View style={styles.view}>
                 {React.createElement(icon,{width: 18, height: 18, fill: defTheme.colors.primary1})}
-                <Text style={[defStyles.text, styles.text]} numberOfLines={1}>{text}</Text>
+                <Text style={[defStyles.title, styles.title]} numberOfLines={1}>{text}</Text>
             </View>
         </TouchableNativeFeedback>
     );
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         paddingVertical: 8,
     },
-    text: {
+    title: {
         fontSize: 16,
         marginLeft: 12,
         fontFamily: "URWGeometric-600"

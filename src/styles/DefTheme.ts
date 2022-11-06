@@ -31,7 +31,13 @@ const defTheme = {
         error2: "#ba3b4d",
         error3: "#ae6f77",
 
-        background: "white",
+        stream: "#ff0b2d",
+        flash: "#E3D286",
+
+        tempMin: "#34b7d5",
+        tempMax: "#d33924",
+
+        background: "#f2f2f2",
     }
 }
 

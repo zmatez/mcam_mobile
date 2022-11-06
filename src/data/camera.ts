@@ -1,5 +1,4 @@
 import {ResidualUser, User} from "./user";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export class CameraModel {
     public readonly id: number;
@@ -85,38 +84,39 @@ export class Camera {
     }
 
     public async getLocalScreenshot(): Promise<string | null> {
-        const camerasString = await AsyncStorage.getItem('cameras')
-        let cameras: {[sid: string]: {preview: string | null}} = {};
-        if(camerasString) {
-            cameras = JSON.parse(camerasString);
-        }
-        if(!cameras) {
-            return null;
-        }
-
-        if(!(this.sid in cameras)) {
-            cameras[this.sid] = {preview: null};
-        }
-
-        return cameras[this.sid].preview;
+        return null;
+        // const camerasString = await AsyncStorage.getItem('cameras')
+        // let cameras: {[sid: string]: {preview: string | null}} = {};
+        // if(camerasString) {
+        //     cameras = JSON.parse(camerasString);
+        // }
+        // if(!cameras) {
+        //     return null;
+        // }
+        //
+        // if(!(this.sid in cameras)) {
+        //     cameras[this.sid] = {preview: null};
+        // }
+        //
+        // return cameras[this.sid].preview;
     }
 
     public async setLocalScreenshot(image: string) {
-        const camerasString = await AsyncStorage.getItem('cameras')
-        let cameras: {[sid: string]: {preview: string | null}} = {};
-        if(camerasString) {
-            cameras = JSON.parse(camerasString);
-        }
-        if(!cameras) {
-            return
-        }
-
-        if(!(this.sid in cameras)) {
-            cameras[this.sid] = {preview: null};
-        }
-
-        cameras[this.sid].preview = image;
-        await AsyncStorage.setItem('cameras',JSON.stringify(cameras));
+        // const camerasString = await AsyncStorage.getItem('cameras')
+        // let cameras: {[sid: string]: {preview: string | null}} = {};
+        // if(camerasString) {
+        //     cameras = JSON.parse(camerasString);
+        // }
+        // if(!cameras) {
+        //     return
+        // }
+        //
+        // if(!(this.sid in cameras)) {
+        //     cameras[this.sid] = {preview: null};
+        // }
+        //
+        // cameras[this.sid].preview = image;
+        // await AsyncStorage.setItem('cameras',JSON.stringify(cameras));
     }
 }
 

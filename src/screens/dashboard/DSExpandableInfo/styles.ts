@@ -4,11 +4,14 @@ import DefTheme from "../../../styles/DefTheme";
 const styles = StyleSheet.create({
     box: {
         marginVertical: 6,
+        flexDirection: "column"
+    },
+    innerBox: {
+        flexDirection: "row",
+        alignItems: "center",
         backgroundColor: DefTheme.colors.secondary6,
         borderRadius: 15,
         padding: 8,
-        flexDirection: "row",
-        alignItems: "center"
     },
     title: {
         fontFamily: "URWGeometric-800",
@@ -21,6 +24,9 @@ const styles = StyleSheet.create({
         fontFamily: "URWGeometric-700",
         fontSize: 13,
         textTransform: "uppercase"
+    },
+    collapsible: {
+        marginTop: 8
     }
 });
 

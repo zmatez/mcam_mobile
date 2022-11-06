@@ -1,6 +1,8 @@
 export class Messages {
     public static AUTHENTICATION_SUCCESSFUL: number = 0x001;
     public static AUTHENTICATION_FAILED: number = 0x002;
+    public static CONNECTION_CHECK: number = 0x003;
+    public static CONNECTION_CHECK_RESPONSE: number = 0x004;
 
     // REQUESTS
     public static REQUEST_CAMERA_LIST: number = 0x010;

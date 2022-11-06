@@ -5,6 +5,7 @@ import DashAccDrawer from "./DashboardDrawer/DashAccDrawer";
 import DashboardNavigation from "./DashboardNavigation";
 import DashboardContext from "../contexts/DashboardContext";
 import DashboardFuncContext from "../contexts/DashboardFuncContext";
+import AccountScreen from "../screens/account/AccountScreen/AccountScreen";
 
 interface OwnProps {
 }
@@ -22,8 +23,7 @@ const DashAccNavigation: FunctionComponent<Props> = (props) => {
                 <Drawer.Navigator screenOptions={{headerShown: false}} initialRouteName={"Dashboard"}
                                   drawerContent={props => <DashAccDrawer {...props} />}>
                     <Drawer.Screen name={"Dashboard"} component={DashboardNavigation}/>
-                    <Drawer.Screen name={"Account"} component={DashboardNavigation}/>
-                    {/*todo account screen*/}
+                    <Drawer.Screen name={"Account"} component={AccountScreen} options={{swipeEnabled: false}}/>
                 </Drawer.Navigator>
             </DashboardFuncContext>
         </DashboardContext>

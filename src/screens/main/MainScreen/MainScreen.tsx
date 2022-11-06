@@ -27,7 +27,11 @@ const MainScreen: FunctionComponent<MainProps> = ({navigation}) => {
             <View style={styles.backgroundPortraitInner}>
                 <View style={styles.backgroundPortraitLogoInline}>
                     <Logo style={styles.logo}/>
-                    <Text style={[defStyles.text, {fontFamily: "URWGeometric-1000", fontSize: 50, marginLeft: 6}]}>MCam</Text>
+                    <Text style={[defStyles.title, {
+                        fontFamily: "URWGeometric-1000",
+                        fontSize: 50,
+                        marginLeft: 6
+                    }]}>MCam</Text>
                 </View>
 
                 <View style={styles.titleView}>

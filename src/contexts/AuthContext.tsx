@@ -245,7 +245,6 @@ export const AuthProvider: FunctionComponent<Props> = ({children, onLoad}) => {
                     const newUser = currentUser;
                     newUser.color = color;
                     await setUser(newUser);
-                    console.log("set user")
                 }
                 return true;
             }

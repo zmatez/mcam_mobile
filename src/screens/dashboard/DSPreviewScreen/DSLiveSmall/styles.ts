@@ -16,8 +16,19 @@ const styles = StyleSheet.create({
         overflow: "hidden"
     },
     stream: {
-        aspectRatio: 16/9,
-        width: '100%'
+        aspectRatio: 16 / 9,
+        width: '100%',
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative"
+    },
+    fpsCounter: {
+        fontFamily: "URWGeometric-600",
+        fontSize: 12,
+        position: "absolute",
+        top: 5,
+        right: 5,
+        color: DefTheme.colors.background
     },
     controls: {
         flexDirection: "row",
@@ -25,6 +36,21 @@ const styles = StyleSheet.create({
         paddingHorizontal: 18,
         justifyContent: "flex-start",
         alignItems: "center"
+    },
+    icon: {
+        marginHorizontal: 2
+    },
+    qualityBox: {
+        backgroundColor: DefTheme.colors.secondary5,
+        marginLeft: "auto",
+        marginRight: "auto",
+        paddingHorizontal: 6,
+        borderRadius: 6
+    },
+    qualityText: {
+        fontFamily: "URWGeometric-700",
+        fontSize: 13,
+        color: DefTheme.colors.cameraBackground
     }
 });
 
