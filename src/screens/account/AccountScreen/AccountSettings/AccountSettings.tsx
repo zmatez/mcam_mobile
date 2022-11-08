@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
-import {FlatList, Text, TouchableNativeFeedback, View} from "react-native";
+import {FlatList, Share, Switch, Text, TouchableNativeFeedback, TouchableOpacity, View} from "react-native";
 import {useAccountContext} from "../../../../contexts/AccountContext";
 import styles from "./styles";
 import ShareIcon from "../../../../assets/icons/material/share.svg";
@@ -9,6 +9,7 @@ import DefTheme from "../../../../styles/DefTheme";
 import AccountColorModal from "./AccountColorModal/AccountColorModal";
 import {useAuth} from "../../../../contexts/AuthContext";
 import CameraPreview from "../../../../components/camera/CameraPreview/CameraPreview";
+import AccountThemeChooser from "./AccountThemeChooser/AccountThemeChooser";
 
 interface InfoProps {
 
@@ -34,6 +35,21 @@ const AccountSettings: FunctionComponent<InfoProps> = ({}) => {
         setUserColor(color);
     }
 
+    const onShare = async () => {
+        if(!userData) {
+            return
+        }
+        const hash = userData.user.hash;
+        if(!hash) {
+            return;
+        }
+        const result = await Share.share({
+            message: "Konto MCam: " + userData.user.email + ", hash: #" + hash.toUpperCase(),
+        }, {
+            dialogTitle: "Udostępnij dane konta"
+        });
+    };
+
     if (!userData) {
         return null
     }
@@ -56,14 +72,14 @@ const AccountSettings: FunctionComponent<InfoProps> = ({}) => {
                 }} small={true}/>
             </AccountSetting>
             <AccountSetting title={"Hash"}>
-                <TouchableNativeFeedback onPress={() => {
-
+                <TouchableOpacity onPress={() => {
+                    onShare()
                 }}>
                     <View style={styles.hashBox}>
                         <Text style={styles.hashText}>{userData.user.hash ? userData.user.hash : "Brak"}</Text>
                         <ShareIcon width={16} height={16} fill={DefTheme.colors.secondary1}/>
                     </View>
-                </TouchableNativeFeedback>
+                </TouchableOpacity>
                 <MButton text={"Generuj nowy"} onClick={() => {
                     newHash()
                 }} small={true}/>
@@ -71,7 +87,7 @@ const AccountSettings: FunctionComponent<InfoProps> = ({}) => {
             </AccountSetting>
             <Text style={styles.title}>Ustawienia aplikacji</Text>
             <AccountSetting title={"Motyw"}>
-
+                <AccountThemeChooser/>
             </AccountSetting>
             <Text style={styles.title}>Moje kamery</Text>
             {userData.cameras.length > 0 ? (
