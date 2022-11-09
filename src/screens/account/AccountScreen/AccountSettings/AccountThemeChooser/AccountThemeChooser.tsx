@@ -1,8 +1,9 @@
-import React, {FunctionComponent, ReactNode} from 'react';
-import {Text, TouchableOpacity, View} from "react-native";
+import React, {FunctionComponent} from 'react';
+import {TouchableOpacity, View} from "react-native";
 import styles from "./styles";
-import SunIcon from "../../../../../assets/icons/material/weather_sun.svg"
-import MoonIcon from "../../../../../assets/icons/material/weather_moon.svg"
+import LightIcon from "../../../../../assets/icons/material/theme_light.svg"
+import DarkIcon from "../../../../../assets/icons/material/theme_dark.svg"
+import SystemIcon from "../../../../../assets/icons/material/theme_system.svg"
 
 interface ExpandProps {
 
@@ -18,8 +19,13 @@ const AccountThemeChooser: FunctionComponent<ExpandProps> = ({}) => {
         <View style={[styles.box]}>
             <View style={[styles.inner]}>
                 <View style={styles.circle}/>
-                <TouchableOpacity onPress={() => setTheme("light")}><SunIcon width={size} height={size} fill={"#000000"} style={styles.icon}/></TouchableOpacity>
-                <TouchableOpacity onPress={() => setTheme("dark")}><MoonIcon width={size} height={size} fill={"#000000"} style={styles.icon}/></TouchableOpacity>
+                <TouchableOpacity onPress={() => setTheme("light")}><LightIcon width={size} height={size}
+                                                                               fill={"#000000"}
+                                                                               style={styles.icon}/></TouchableOpacity>
+                <TouchableOpacity onPress={() => setTheme("dark")}><DarkIcon width={size} height={size} fill={"#000000"}
+                                                                             style={styles.icon}/></TouchableOpacity>
+                <TouchableOpacity onPress={() => setTheme("system")}><SystemIcon width={size} height={size}
+                                                                                 fill={"#000000"} style={styles.icon}/></TouchableOpacity>
             </View>
         </View>
     );
