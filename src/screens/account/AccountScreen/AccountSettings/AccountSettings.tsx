@@ -10,6 +10,9 @@ import AccountColorModal from "./AccountColorModal/AccountColorModal";
 import {useAuth} from "../../../../contexts/AuthContext";
 import CameraPreview from "../../../../components/camera/CameraPreview/CameraPreview";
 import AccountThemeChooser from "./AccountThemeChooser/AccountThemeChooser";
+import MSwitch from "../../../../components/forms/MSwitch";
+import {useThemeContext} from "../../../../contexts/ThemeContext";
+import {useAddCameraContext} from "../../../../contexts/AddCameraContext";
 
 interface InfoProps {
 
@@ -17,8 +20,10 @@ interface InfoProps {
 
 const AccountSettings: FunctionComponent<InfoProps> = ({}) => {
     const {setUserColor} = useAuth();
+    const {userAccent, setUserAccent} = useThemeContext();
     const {userData, refreshAccountData, generateHash} = useAccountContext();
     const [showColorModal, setShowColorModal] = useState(false);
+    const {setAddCamModalShown} = useAddCameraContext();
 
     const newHash = () => {
         generateHash((hash) => {
@@ -89,6 +94,9 @@ const AccountSettings: FunctionComponent<InfoProps> = ({}) => {
             <AccountSetting title={"Motyw"}>
                 <AccountThemeChooser/>
             </AccountSetting>
+            <AccountSetting title={"Własny akcent"}>
+                <MSwitch enabled={userAccent} onToggle={(value) => setUserAccent(value)}/>
+            </AccountSetting>
             <Text style={styles.title}>Moje kamery</Text>
             {userData.cameras.length > 0 ? (
                 <FlatList style={styles.myCameras} horizontal data={userData.cameras} renderItem={({item, index}) => (
@@ -98,6 +106,7 @@ const AccountSettings: FunctionComponent<InfoProps> = ({}) => {
                 <View style={styles.noCameras}>
                     <Text style={styles.noCamerasText}>Nie posiadasz kamer</Text>
                     <MButton text={"Dodaj nową"} onClick={() => {
+                        setAddCamModalShown(true)
                     }}/>
                 </View>
             )}

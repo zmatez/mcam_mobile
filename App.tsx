@@ -8,6 +8,7 @@ import 'dayjs/locale/pl'
 import dayJsRelativeTime from 'dayjs/plugin/relativeTime';
 import dayJsWeekday from 'dayjs/plugin/weekday';
 import dayJsCalendar from 'dayjs/plugin/calendar';
+import ThemeContext from "./src/contexts/ThemeContext";
 
 dayjs.locale('pl');
 dayjs.extend(dayJsRelativeTime);
@@ -46,7 +47,9 @@ export default function App() {
             <AuthProvider onLoad={() => {
                 setLoading(false);
             }}>
-                <AppNavigation/>
+                <ThemeContext>
+                    <AppNavigation/>
+                </ThemeContext>
             </AuthProvider>
         </NavigationContainer>
     );

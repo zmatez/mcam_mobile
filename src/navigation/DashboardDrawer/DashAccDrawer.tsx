@@ -14,12 +14,14 @@ import {useDashboard} from "../../contexts/DashboardContext";
 import ProgressLoader from "../../components/progress/ProgressLoader";
 import {useDashboardFunc} from "../../contexts/DashboardFuncContext";
 import CameraPreview from "../../components/camera/CameraPreview/CameraPreview";
+import {useAddCameraContext} from "../../contexts/AddCameraContext";
 
 
 const DashAccDrawer: FunctionComponent<DrawerContentComponentProps> = (props) => {
     const {cookiesCache, logout} = useAuth();
     const {isConnected} = useDashboard();
     const {cameras, refreshCameraList} = useDashboardFunc();
+    const {setAddCamModalShown} = useAddCameraContext();
     if (!cookiesCache) {
         return null;
     }
@@ -46,7 +48,7 @@ const DashAccDrawer: FunctionComponent<DrawerContentComponentProps> = (props) =>
                             :
                             (<ProgressLoader size={16} color={DefTheme.colors.primary1} show={true}/>)
                         }</View></TouchableNativeFeedback>
-                        <TouchableNativeFeedback><View style={styles.camerasIconWrapper}><AddIcon width={16} height={16} style={styles.camerasIcon} fill={DefTheme.colors.secondary1}/></View></TouchableNativeFeedback>
+                        <TouchableNativeFeedback onPress={() => {setAddCamModalShown(true)}}><View style={styles.camerasIconWrapper}><AddIcon width={16} height={16} style={styles.camerasIcon} fill={DefTheme.colors.secondary1}/></View></TouchableNativeFeedback>
                     </View>
                 </View>
                 {cameras == null ? (
